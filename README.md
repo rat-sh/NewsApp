@@ -45,6 +45,17 @@ A clean, production-ready React Native application built to demonstrate core mob
    bun run ios
    ```
 
+## 🏗️ Architecture & Folder Structure
+
+The app follows a clear separation of concerns, separating UI, business logic, and API interactions:
+
+- `/src/store` - Redux Toolkit slices. State logic and asynchronous thunks (API calls) live here.
+- `/src/hooks` - Custom hooks (`useHeadlines`, `useSearch`, `useAppState`) encapsulate complex component logic, keeping UI components clean.
+- `/src/services` - Centralized API calls (Axios instances and interceptors) and local storage (MMKV) configurations.
+- `/src/navigation` - React Navigation stacks and tab configs are isolated here.
+- `/src/components` - Reusable, dumb/presentational UI components (`ArticleCard`, `SearchBar`).
+- `/src/screens` - Smart components that act as the glue between hooks, Redux, and UI components.
+
 ## 🛠️ Key Technical Decisions
 
 - **React Native CLI (No Expo)**: Used bare React Native to maintain full control over native modules and build pipelines.
