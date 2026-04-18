@@ -1,8 +1,4 @@
 // ─── Globals ───────────────────────────────────────────────────────────────
-declare global {
-    // Allow process.env access (React Native uses dotenv/babel-plugin-dotenv)
-    var process: { env: Record<string, string | undefined> };
-}
 
 // ─── Article ───────────────────────────────────────────────────────────────
 

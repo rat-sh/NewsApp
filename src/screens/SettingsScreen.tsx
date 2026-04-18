@@ -85,7 +85,7 @@ const SettingsScreen = ({ navigation }: Props) => {
                                 styles.themeOption,
                                 theme !== 'dark' && styles.themeOptionActiveLight
                             ]}
-                            onPress={() => dispatch(setTheme('light'))}
+                            onPress={() => { dispatch(setTheme('light')); }}
                             activeOpacity={0.8}
                         >
                             <Text style={[
@@ -101,7 +101,7 @@ const SettingsScreen = ({ navigation }: Props) => {
                                 styles.themeOption,
                                 theme === 'dark' && styles.themeOptionActiveDark
                             ]}
-                            onPress={() => dispatch(setTheme('dark'))}
+                            onPress={() => { dispatch(setTheme('dark')); }}
                             activeOpacity={0.8}
                         >
                             <Text style={[

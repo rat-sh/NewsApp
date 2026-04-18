@@ -3,7 +3,7 @@ import { Article, ChatMessage, Language, LANGUAGE_LABELS } from '../types';
 import { buildArticleContext } from '../utils/helpers';
 
 const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
-const OPENAI_KEY = process.env.OPENAI_API_KEY ?? '';
+import { OPENAI_API_KEY as OPENAI_KEY } from '@env';
 const MODEL = 'gpt-3.5-turbo';
 
 interface OpenAIMessage {

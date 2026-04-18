@@ -5,6 +5,7 @@ import { NewsApiResponse, Category, Language } from '../types';
 // Axios instance
 // ---------------------------------------------------------------------------
 const BASE_URL = 'https://newsapi.org/v2';
+import { NEWS_API_KEY } from '@env';
 const PAGE_SIZE = 20;
 
 const apiClient: AxiosInstance = axios.create({
@@ -19,7 +20,7 @@ const apiClient: AxiosInstance = axios.create({
 apiClient.interceptors.request.use(config => {
     config.params = {
         ...config.params,
-        apiKey: process.env.NEWS_API_KEY ?? '',
+        apiKey: NEWS_API_KEY,
         pageSize: PAGE_SIZE,
     };
     return config;

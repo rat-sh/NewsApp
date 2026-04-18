@@ -12,8 +12,7 @@
 import axios, { AxiosInstance } from 'axios';
 import { User, Article } from '../types';
 
-const SUPABASE_URL      = process.env.SUPABASE_URL      ?? '';
-const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY ?? '';
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from '@env';
 
 // ── Supabase REST client ──────────────────────────────────────────────────────
 const supabase: AxiosInstance = axios.create({
