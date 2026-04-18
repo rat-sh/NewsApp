@@ -1,0 +1,48 @@
+src/navigation/RootNavigator.tsx(30,27): error TS2322: Type '"Tabs"' is not assignable to type '"Settings"'.
+src/navigation/TabNavigator.tsx(14,45): error TS2307: Cannot find module '../../types' or its corresponding type declarations.
+src/navigation/TabNavigator.tsx(15,48): error TS2307: Cannot find module '../../store' or its corresponding type declarations.
+src/navigation/TabNavigator.tsx(16,39): error TS2307: Cannot find module '../../store/slices/preferencesSlice' or its corresponding type declarations.
+src/navigation/TabNavigator.tsx(17,28): error TS2307: Cannot find module '../../store/slices/authSlice' or its corresponding type declarations.
+src/navigation/TabNavigator.tsx(18,32): error TS2307: Cannot find module '../../store/slices/bookmarksSlice' or its corresponding type declarations.
+src/navigation/TabNavigator.tsx(19,32): error TS2307: Cannot find module '../../store/slices/headlinesSlice' or its corresponding type declarations.
+src/navigation/TabNavigator.tsx(20,28): error TS2307: Cannot find module '../../components/LanguagePicker' or its corresponding type declarations.
+src/navigation/TabNavigator.tsx(27,48): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/navigation/TabNavigator.tsx(28,44): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/screens/ArticleDetailScreen.tsx(15,35): error TS2307: Cannot find module '../../types' or its corresponding type declarations.
+src/screens/ArticleDetailScreen.tsx(16,48): error TS2307: Cannot find module '../../store' or its corresponding type declarations.
+src/screens/ArticleDetailScreen.tsx(21,8): error TS2307: Cannot find module '../../store/slices/bookmarksSlice' or its corresponding type declarations.
+src/screens/ArticleDetailScreen.tsx(22,28): error TS2307: Cannot find module '../../hooks/useNetInfo' or its corresponding type declarations.
+src/screens/ArticleDetailScreen.tsx(23,42): error TS2307: Cannot find module '../../utils/helpers' or its corresponding type declarations.
+src/screens/ArticleDetailScreen.tsx(24,32): error TS2307: Cannot find module '../../components/FloatingChatButton' or its corresponding type declarations.
+src/screens/ArticleDetailScreen.tsx(25,29): error TS2307: Cannot find module '../../components/ChatBottomSheet' or its corresponding type declarations.
+src/screens/ArticleDetailScreen.tsx(38,38): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/screens/ArticleDetailScreen.tsx(39,44): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/screens/ArticleDetailScreen.tsx(40,37): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/screens/ArticleDetailScreen.tsx(42,41): error TS7006: Parameter 'a' implicitly has an 'any' type.
+src/screens/BookmarksScreen.tsx(4,44): error TS2307: Cannot find module '../../types' or its corresponding type declarations.
+src/screens/BookmarksScreen.tsx(5,48): error TS2307: Cannot find module '../../store' or its corresponding type declarations.
+src/screens/BookmarksScreen.tsx(6,31): error TS2307: Cannot find module '../../store/slices/bookmarksSlice' or its corresponding type declarations.
+src/screens/BookmarksScreen.tsx(7,25): error TS2307: Cannot find module '../../components/ArticleList' or its corresponding type declarations.
+src/screens/BookmarksScreen.tsx(14,37): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/screens/BookmarksScreen.tsx(15,44): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/screens/HomeScreen.tsx(4,44): error TS2307: Cannot find module '../../types' or its corresponding type declarations.
+src/screens/HomeScreen.tsx(5,30): error TS2307: Cannot find module '../../hooks/useHeadlines' or its corresponding type declarations.
+src/screens/HomeScreen.tsx(6,25): error TS2307: Cannot find module '../../components/ArticleList' or its corresponding type declarations.
+src/screens/HomeScreen.tsx(7,26): error TS2307: Cannot find module '../../components/CategoryTabs' or its corresponding type declarations.
+src/screens/SearchScreen.tsx(10,44): error TS2307: Cannot find module '../../types' or its corresponding type declarations.
+src/screens/SearchScreen.tsx(11,27): error TS2307: Cannot find module '../../hooks/useSearch' or its corresponding type declarations.
+src/screens/SearchScreen.tsx(12,23): error TS2307: Cannot find module '../../components/SearchBar' or its corresponding type declarations.
+src/screens/SearchScreen.tsx(13,25): error TS2307: Cannot find module '../../components/ArticleList' or its corresponding type declarations.
+src/screens/SettingsScreen.tsx(14,45): error TS2307: Cannot find module '../../types' or its corresponding type declarations.
+src/screens/SettingsScreen.tsx(15,48): error TS2307: Cannot find module '../../store' or its corresponding type declarations.
+src/screens/SettingsScreen.tsx(16,39): error TS2307: Cannot find module '../../store/slices/preferencesSlice' or its corresponding type declarations.
+src/screens/SettingsScreen.tsx(17,28): error TS2307: Cannot find module '../../store/slices/authSlice' or its corresponding type declarations.
+src/screens/SettingsScreen.tsx(18,32): error TS2307: Cannot find module '../../store/slices/bookmarksSlice' or its corresponding type declarations.
+src/screens/SettingsScreen.tsx(19,32): error TS2307: Cannot find module '../../store/slices/headlinesSlice' or its corresponding type declarations.
+src/screens/SettingsScreen.tsx(20,28): error TS2307: Cannot find module '../../components/LanguagePicker' or its corresponding type declarations.
+src/screens/SettingsScreen.tsx(27,48): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/screens/SettingsScreen.tsx(28,44): error TS7006: Parameter 'state' implicitly has an 'any' type.
+src/services/aiService.ts(6,20): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+src/services/newsApi.ts(22,17): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+src/services/supabase.ts(18,22): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+src/services/supabase.ts(19,27): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.

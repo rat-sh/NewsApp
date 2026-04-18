@@ -1,0 +1,19 @@
+src/navigation/RootNavigator.tsx(30,27): error TS2322: Type '"Tabs"' is not assignable to type '"Settings"'.
+src/navigation/TabNavigator.tsx(90,25): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: SwitchProps): Switch', gave the following error.
+    Type '(val: boolean) => { payload: "light" | "dark"; type: "preferences/setTheme"; }' is not assignable to type '(value: boolean) => void | Promise<void>'.
+      Type '{ payload: "light" | "dark"; type: "preferences/setTheme"; }' is not assignable to type 'void | Promise<void>'.
+  Overload 2 of 2, '(props: SwitchProps, context: any): Switch', gave the following error.
+    Type '(val: boolean) => { payload: "light" | "dark"; type: "preferences/setTheme"; }' is not assignable to type '(value: boolean) => void | Promise<void>'.
+      Type '{ payload: "light" | "dark"; type: "preferences/setTheme"; }' is not assignable to type 'void | Promise<void>'.
+src/screens/SettingsScreen.tsx(90,25): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: SwitchProps): Switch', gave the following error.
+    Type '(val: boolean) => { payload: "light" | "dark"; type: "preferences/setTheme"; }' is not assignable to type '(value: boolean) => void | Promise<void>'.
+      Type '{ payload: "light" | "dark"; type: "preferences/setTheme"; }' is not assignable to type 'void | Promise<void>'.
+  Overload 2 of 2, '(props: SwitchProps, context: any): Switch', gave the following error.
+    Type '(val: boolean) => { payload: "light" | "dark"; type: "preferences/setTheme"; }' is not assignable to type '(value: boolean) => void | Promise<void>'.
+      Type '{ payload: "light" | "dark"; type: "preferences/setTheme"; }' is not assignable to type 'void | Promise<void>'.
+src/services/aiService.ts(6,20): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+src/services/newsApi.ts(22,17): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+src/services/supabase.ts(18,22): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+src/services/supabase.ts(19,27): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
