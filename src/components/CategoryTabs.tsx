@@ -8,6 +8,7 @@ import {
     View,
 } from 'react-native';
 import { Category, CATEGORY_LABELS } from '../types';
+import { useAppSelector } from "../store";
 
 const CATEGORIES: Category[] = [
     'general',
@@ -25,7 +26,7 @@ interface Props {
 }
 
 const CategoryTabs = ({ selected, onSelect }: Props) => {
-    const isDark = useColorScheme() === 'dark';
+    const isDark = useAppSelector(state => state.preferences.theme) === 'dark';
     const scrollRef = useRef<ScrollView>(null);
 
     const handleSelect = useCallback(

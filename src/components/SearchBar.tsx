@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAppSelector } from "../store";
 import {
     View,
     TextInput,
@@ -16,7 +17,7 @@ interface Props {
 }
 
 const SearchBar = ({ value, onChangeText, onClear, placeholder = 'Search news…' }: Props) => {
-    const isDark = useColorScheme() === 'dark';
+    const isDark = useAppSelector(state => state.preferences.theme) === 'dark';
     const s = isDark ? dark : light;
 
     return (

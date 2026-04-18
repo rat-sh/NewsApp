@@ -6,11 +6,12 @@ import SearchScreen from '../screens/SearchScreen';
 import BookmarksScreen from '../screens/BookmarksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import { TabParamList } from '../types';
+import { useAppSelector } from "../store";
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
 const TabNavigator = () => {
-    const isDark = useColorScheme() === 'dark';
+    const isDark = useAppSelector(state => state.preferences.theme) === 'dark';
 
     return (
         <Tab.Navigator

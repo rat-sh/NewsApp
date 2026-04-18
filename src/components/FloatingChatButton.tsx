@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { useAppSelector } from "../store";
 import {
     TouchableOpacity,
     Text,
@@ -13,7 +14,7 @@ interface Props {
 }
 
 const FloatingChatButton = ({ onPress, isOnline }: Props) => {
-    const isDark = useColorScheme() === 'dark';
+    const isDark = useAppSelector(state => state.preferences.theme) === 'dark';
     const scale = useRef(new Animated.Value(0)).current;
     const pulse = useRef(new Animated.Value(1)).current;
 

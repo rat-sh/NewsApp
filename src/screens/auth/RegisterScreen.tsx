@@ -20,7 +20,7 @@ import { registerUser, clearError } from '../../store/slices/authSlice';
 type Props = NativeStackScreenProps<AuthStackParamList, 'Register'>;
 
 const RegisterScreen = ({ navigation }: Props) => {
-    const isDark = useColorScheme() === 'dark';
+    const isDark = useAppSelector(state => state.preferences.theme) === 'dark';
     const dispatch = useAppDispatch();
     const { isLoading, error } = useAppSelector(state => state.auth);
     const s = isDark ? dark : light;

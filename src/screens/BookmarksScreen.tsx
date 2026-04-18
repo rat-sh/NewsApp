@@ -9,7 +9,7 @@ import ArticleList from '../components/ArticleList';
 type Props = NativeStackScreenProps<AppStackParamList, 'Tabs'>;
 
 const BookmarksScreen = ({ navigation }: Props) => {
-    const isDark = useColorScheme() === 'dark';
+    const isDark = useAppSelector(state => state.preferences.theme) === 'dark';
     const dispatch = useAppDispatch();
     const articles = useAppSelector(state => state.bookmarks.articles);
     const { user, token } = useAppSelector(state => state.auth);

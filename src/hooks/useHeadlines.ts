@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../store';
 import { fetchHeadlines, setCategory } from '../store/slices/headlinesSlice';
 import { Category } from '../types';
@@ -18,10 +18,15 @@ export function useHeadlines() {
     const { articles, page, totalResults, category, status, refreshing, error } =
         useAppSelector(state => state.headlines);
     const language = useAppSelector(state => state.preferences.language);
+    const prevLanguage = useRef(language);
 
-    // ── Initial / category load ─────────────────────────────────────────────
+    // ── Initial / category / language load ──────────────────────────────────
     useEffect(() => {
-        if (status === 'idle') {
+        if (prevLanguage.current !== language) {
+            prevLanguage.current = language;
+            // Language changed, force refresh
+            dispatch(fetchHeadlines({ category, page: 1, language, refresh: true }));
+        } else if (status === 'idle') {
             dispatch(fetchHeadlines({ category, page: 1, language }));
         }
     }, [category, status, language, dispatch]);

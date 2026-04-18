@@ -9,35 +9,21 @@ import {
     SafeAreaView,
 } from 'react-native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { TabParamList, Language } from '../types';
+import { TabParamList } from '../types';
 import { useAppDispatch, useAppSelector } from '../store';
-import { setLanguage, setTheme } from '../store/slices/preferencesSlice';
-import LanguagePicker from '../components/LanguagePicker';
+import { setTheme } from '../store/slices/preferencesSlice';
 
 type Props = BottomTabScreenProps<TabParamList, 'Settings'>;
 
 const SettingsScreen = ({ navigation }: Props) => {
-    const isDark = useColorScheme() === 'dark';
+    const isDark = useAppSelector(state => state.preferences.theme) === 'dark';
     const dispatch = useAppDispatch();
-    const { language, theme } = useAppSelector(state => state.preferences);
+    const { theme } = useAppSelector(state => state.preferences);
     const s = isDark ? dark : light;
-
-    const handleLanguageChange = useCallback(
-        (lang: Language) => dispatch(setLanguage(lang)),
-        [dispatch],
-    );
 
     return (
         <SafeAreaView style={[styles.container, s.container]}>
             <ScrollView contentContainerStyle={styles.content}>
-                {/* Language */}
-                <Text style={[styles.sectionLabel, s.sectionLabel]}>Language</Text>
-                <View style={[styles.card, s.card]}>
-                    <Text style={[styles.cardNote, s.subtitle]}>
-                        Articles and AI summaries will be shown in your selected language.
-                    </Text>
-                    <LanguagePicker selected={language} onSelect={handleLanguageChange} />
-                </View>
 
                 {/* Appearance */}
                 <Text style={[styles.sectionLabel, s.sectionLabel]}>Appearance</Text>

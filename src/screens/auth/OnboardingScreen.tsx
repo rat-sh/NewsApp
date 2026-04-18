@@ -13,11 +13,12 @@ import { AuthStackParamList, Language } from '../../types';
 import { useAppDispatch } from '../../store';
 import { setLanguage, completeOnboarding } from '../../store/slices/preferencesSlice';
 import LanguagePicker from '../../components/LanguagePicker';
+import { useAppSelector } from "../../store";
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Onboarding'>;
 
 const OnboardingScreen = ({ navigation }: Props) => {
-    const isDark = useColorScheme() === 'dark';
+    const isDark = useAppSelector(state => state.preferences.theme) === 'dark';
     const dispatch = useAppDispatch();
     const [selectedLanguage, setSelectedLanguage] = useState<Language>('en');
     const s = isDark ? dark : light;

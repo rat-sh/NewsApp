@@ -13,7 +13,7 @@ import { useAppSelector } from '../../store';
 type Props = NativeStackScreenProps<AuthStackParamList, 'Splash'>;
 
 const SplashScreen = ({ navigation }: Props) => {
-    const isDark = useColorScheme() === 'dark';
+    const isDark = useAppSelector(state => state.preferences.theme) === 'dark';
     const user = useAppSelector(state => state.auth.user);
     const onboardingComplete = useAppSelector(state => state.preferences.onboardingComplete);
 

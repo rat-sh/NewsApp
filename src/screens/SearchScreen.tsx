@@ -16,9 +16,10 @@ import { Article } from '../types';
 import { useSearch } from '../hooks/useSearch';
 import SearchBar from '../components/SearchBar';
 import ArticleList from '../components/ArticleList';
+import { useAppSelector } from "../store";
 
 const SearchScreen = () => {
-    const isDark = useColorScheme() === 'dark';
+    const isDark = useAppSelector(state => state.preferences.theme) === 'dark';
     const s = isDark ? dark : light;
     const navigation = useNavigation<any>();
     const { query, articles, status, error, hasMore, onQueryChange, loadMore, clear } =

@@ -8,6 +8,7 @@ import {
     ScrollView,
 } from 'react-native';
 import { Language, LANGUAGE_LABELS } from '../types';
+import { useAppSelector } from "../store";
 
 const LANGUAGES = Object.entries(LANGUAGE_LABELS) as [Language, string][];
 
@@ -17,7 +18,7 @@ interface Props {
 }
 
 const LanguagePicker = ({ selected, onSelect }: Props) => {
-    const isDark = useColorScheme() === 'dark';
+    const isDark = useAppSelector(state => state.preferences.theme) === 'dark';
     const s = isDark ? dark : light;
 
     return (

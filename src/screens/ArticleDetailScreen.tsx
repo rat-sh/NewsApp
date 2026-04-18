@@ -28,7 +28,7 @@ const PLACEHOLDER = 'https://via.placeholder.com/800x400?text=No+Image';
 
 const ArticleDetailScreen = ({ route, navigation }: Props) => {
     const { article } = route.params;
-    const isDark = useColorScheme() === 'dark';
+    const isDark = useAppSelector(state => state.preferences.theme) === 'dark';
     const s = isDark ? dark : light;
     const dispatch = useAppDispatch();
     const { isConnected } = useNetInfo();

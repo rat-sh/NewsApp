@@ -5,10 +5,11 @@ import { AppStackParamList, Article } from '../types';
 import { useHeadlines } from '../hooks/useHeadlines';
 import ArticleList from '../components/ArticleList';
 import CategoryTabs from '../components/CategoryTabs';
+import { useAppSelector } from "../store";
 
 const HomeScreen = () => {
     const navigation = useNavigation<any>();
-    const isDark = useColorScheme() === 'dark';
+    const isDark = useAppSelector(state => state.preferences.theme) === 'dark';
     const {
         articles,
         status,

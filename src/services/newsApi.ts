@@ -53,15 +53,14 @@ apiClient.interceptors.response.use(
 export async function getTopHeadlines(
     category: Category,
     page: number,
-    language: Language,
+    _language: Language,
 ): Promise<NewsApiResponse> {
     const { data } = await apiClient.get<NewsApiResponse>('/top-headlines', {
         params: {
             category,
             page,
-            language,
-            // top-headlines requires either sources, q, or country — use country as fallback
-            country: language === 'en' ? 'us' : undefined,
+            language: 'en',
+            country: 'us',
         },
     });
     return data;
@@ -74,13 +73,13 @@ export async function getTopHeadlines(
 export async function searchArticles(
     query: string,
     page: number,
-    language: Language,
+    _language: Language,
 ): Promise<NewsApiResponse> {
     const { data } = await apiClient.get<NewsApiResponse>('/everything', {
         params: {
             q: query,
             page,
-            language,
+            language: 'en',
             sortBy: 'publishedAt',
         },
     });

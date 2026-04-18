@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import { Article, ChatMessage, Language } from '../types';
 import { sendChatMessage, summarizeArticle } from '../services/aiService';
+import { useAppSelector } from "../store";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 const SHEET_HEIGHT = SCREEN_HEIGHT * 0.65;
@@ -28,7 +29,7 @@ interface Props {
 }
 
 const ChatBottomSheet = ({ article, language, visible, onClose }: Props) => {
-    const isDark = useColorScheme() === 'dark';
+    const isDark = useAppSelector(state => state.preferences.theme) === 'dark';
     const s = isDark ? dark : light;
 
     const [messages, setMessages] = useState<ChatMessage[]>([]);

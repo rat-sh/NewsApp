@@ -14,6 +14,7 @@ import { LoadingStatus } from '../types';
 import ArticleCard from './ArticleCard';
 import LoadingFooter from './LoadingFooter';
 import { articleKey } from '../utils/helpers';
+import { useAppSelector } from "../store";
 
 interface Props {
     articles: Article[];
@@ -40,7 +41,7 @@ const ArticleList = ({
     ListHeaderComponent,
     emptyMessage = 'No articles found.',
 }: Props) => {
-    const isDark = useColorScheme() === 'dark';
+    const isDark = useAppSelector(state => state.preferences.theme) === 'dark';
     const textColor = isDark ? '#f0f0f0' : '#111';
     const subColor = isDark ? '#888' : '#777';
     const bgColor = isDark ? '#121212' : '#f5f5f5';

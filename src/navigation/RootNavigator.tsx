@@ -4,11 +4,12 @@ import { useColorScheme } from 'react-native';
 import { AppStackParamList } from '../types';
 import TabNavigator from './TabNavigator';
 import ArticleDetailScreen from '../screens/ArticleDetailScreen';
+import { useAppSelector } from "../store";
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
 const RootNavigator = () => {
-    const isDark = useColorScheme() === 'dark';
+    const isDark = useAppSelector(state => state.preferences.theme) === 'dark';
 
     return (
         <Stack.Navigator

@@ -20,7 +20,7 @@ interface Props {
 const PLACEHOLDER = 'https://via.placeholder.com/400x200?text=No+Image';
 
 const ArticleCard = memo(({ article, onPress }: Props) => {
-    const isDark = useColorScheme() === 'dark';
+    const isDark = useAppSelector(state => state.preferences.theme) === 'dark';
     const s = isDark ? darkStyles : lightStyles;
     const dispatch = useAppDispatch();
     const bookmarks = useAppSelector(state => state.bookmarks.articles);
