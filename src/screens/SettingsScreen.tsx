@@ -7,24 +7,19 @@ import {
     ScrollView,
     useColorScheme,
     SafeAreaView,
-    Alert,
 } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { AppStackParamList, Language } from '../types';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { TabParamList, Language } from '../types';
 import { useAppDispatch, useAppSelector } from '../store';
 import { setLanguage, setTheme } from '../store/slices/preferencesSlice';
-import { logoutUser } from '../store/slices/authSlice';
-import { clearBookmarks } from '../store/slices/bookmarksSlice';
-import { resetHeadlines } from '../store/slices/headlinesSlice';
 import LanguagePicker from '../components/LanguagePicker';
 
-type Props = NativeStackScreenProps<AppStackParamList, 'Settings'>;
+type Props = BottomTabScreenProps<TabParamList, 'Settings'>;
 
 const SettingsScreen = ({ navigation }: Props) => {
     const isDark = useColorScheme() === 'dark';
     const dispatch = useAppDispatch();
     const { language, theme } = useAppSelector(state => state.preferences);
-    const { user, token } = useAppSelector(state => state.auth);
     const s = isDark ? dark : light;
 
     const handleLanguageChange = useCallback(
@@ -32,41 +27,9 @@ const SettingsScreen = ({ navigation }: Props) => {
         [dispatch],
     );
 
-
-    const handleLogout = useCallback(() => {
-        Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
-            { text: 'Cancel', style: 'cancel' },
-            {
-                text: 'Sign Out',
-                style: 'destructive',
-                onPress: async () => {
-                    if (token) await dispatch(logoutUser(token));
-                    dispatch(clearBookmarks());
-                    dispatch(resetHeadlines());
-                    // RootNavigator watches auth.user and will switch to AuthStack automatically
-                },
-            },
-        ]);
-    }, [dispatch, token]);
-
     return (
         <SafeAreaView style={[styles.container, s.container]}>
             <ScrollView contentContainerStyle={styles.content}>
-                {/* User info */}
-                {user && (
-                    <View style={[styles.userCard, s.card]}>
-                        <View style={styles.avatar}>
-                            <Text style={styles.avatarText}>
-                                {user.name.charAt(0).toUpperCase()}
-                            </Text>
-                        </View>
-                        <View>
-                            <Text style={[styles.userName, s.title]}>{user.name}</Text>
-                            <Text style={[styles.userEmail, s.subtitle]}>{user.email}</Text>
-                        </View>
-                    </View>
-                )}
-
                 {/* Language */}
                 <Text style={[styles.sectionLabel, s.sectionLabel]}>Language</Text>
                 <View style={[styles.card, s.card]}>
@@ -92,7 +55,7 @@ const SettingsScreen = ({ navigation }: Props) => {
                                 styles.themeOptionText,
                                 theme !== 'dark' ? { color: '#1a73e8', fontWeight: '700' } : s.subtitle
                             ]}>
-                                ☀️ Bright
+                                Light
                             </Text>
                         </TouchableOpacity>
 
@@ -108,11 +71,12 @@ const SettingsScreen = ({ navigation }: Props) => {
                                 styles.themeOptionText,
                                 theme === 'dark' ? { color: '#4fa3f7', fontWeight: '700' } : s.subtitle
                             ]}>
-                                🌙 Dark
+                                Dark
                             </Text>
                         </TouchableOpacity>
                     </View>
                 </View>
+
                 {/* About */}
                 <Text style={[styles.sectionLabel, s.sectionLabel]}>About</Text>
                 <View style={[styles.card, s.card]}>
@@ -128,15 +92,6 @@ const SettingsScreen = ({ navigation }: Props) => {
                         </View>
                     ))}
                 </View>
-
-                {/* Logout */}
-                <TouchableOpacity
-                    style={styles.logoutBtn}
-                    onPress={handleLogout}
-                    activeOpacity={0.8}
-                >
-                    <Text style={styles.logoutText}>Sign Out</Text>
-                </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>
     );
@@ -145,25 +100,6 @@ const SettingsScreen = ({ navigation }: Props) => {
 const styles = StyleSheet.create({
     container: { flex: 1 },
     content: { padding: 16, paddingBottom: 40 },
-    userCard: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 14,
-        padding: 16,
-        borderRadius: 14,
-        marginBottom: 24,
-    },
-    avatar: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
-        backgroundColor: '#1a73e8',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    avatarText: { color: '#fff', fontSize: 20, fontWeight: '700' },
-    userName: { fontSize: 16, fontWeight: '700' },
-    userEmail: { fontSize: 13, marginTop: 2 },
     sectionLabel: {
         fontSize: 12,
         fontWeight: '700',
@@ -185,14 +121,6 @@ const styles = StyleSheet.create({
     },
     aboutLabel: { fontSize: 14 },
     aboutValue: { fontSize: 14, fontWeight: '600' },
-    logoutBtn: {
-        backgroundColor: '#fdecea',
-        borderRadius: 14,
-        paddingVertical: 16,
-        alignItems: 'center',
-        marginTop: 8,
-    },
-    logoutText: { color: '#c62828', fontSize: 16, fontWeight: '700' },
     themeToggleContainer: {
         flexDirection: 'row',
         backgroundColor: 'rgba(0,0,0,0.03)',

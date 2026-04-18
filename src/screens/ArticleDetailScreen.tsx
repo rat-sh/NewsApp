@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import {
     View,
     Text,
@@ -21,8 +21,6 @@ import {
 } from '../store/slices/bookmarksSlice';
 import { useNetInfo } from '../hooks/useNetInfo';
 import { formatDate, cleanContent } from '../utils/helpers';
-import FloatingChatButton from '../components/FloatingChatButton';
-import ChatBottomSheet from '../components/ChatBottomSheet';
 
 type Props = NativeStackScreenProps<AppStackParamList, 'ArticleDetail'>;
 
@@ -37,10 +35,8 @@ const ArticleDetailScreen = ({ route, navigation }: Props) => {
 
     const bookmarks = useAppSelector(state => state.bookmarks.articles);
     const { token, user } = useAppSelector(state => state.auth);
-    const language = useAppSelector(state => state.preferences.language);
 
     const isBookmarked = bookmarks.some(a => a.url === article.url);
-    const [chatVisible, setChatVisible] = useState(false);
 
     // ── Bookmark toggle ────────────────────────────────────────────────────
     const handleBookmark = useCallback(() => {
@@ -141,19 +137,6 @@ const ArticleDetailScreen = ({ route, navigation }: Props) => {
                 </View>
             </ScrollView>
 
-            {/* AI Chat FAB */}
-            <FloatingChatButton
-                onPress={() => setChatVisible(true)}
-                isOnline={isConnected}
-            />
-
-            {/* Chat Bottom Sheet */}
-            <ChatBottomSheet
-                article={article}
-                language={language}
-                visible={chatVisible}
-                onClose={() => setChatVisible(false)}
-            />
         </SafeAreaView>
     );
 };

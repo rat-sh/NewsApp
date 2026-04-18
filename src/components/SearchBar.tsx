@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {
     View,
     TextInput,
@@ -17,14 +17,12 @@ interface Props {
 
 const SearchBar = ({ value, onChangeText, onClear, placeholder = 'Search news…' }: Props) => {
     const isDark = useColorScheme() === 'dark';
-    const inputRef = useRef<TextInput>(null);
     const s = isDark ? dark : light;
 
     return (
         <View style={[styles.wrapper, s.wrapper]}>
             <Text style={styles.icon}>🔍</Text>
             <TextInput
-                ref={inputRef}
                 style={[styles.input, s.input]}
                 value={value}
                 onChangeText={onChangeText}
@@ -37,10 +35,7 @@ const SearchBar = ({ value, onChangeText, onClear, placeholder = 'Search news…
             />
             {value.length > 0 && (
                 <TouchableOpacity
-                    onPress={() => {
-                        onClear();
-                        inputRef.current?.clear();
-                    }}
+                    onPress={onClear}
                     hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                 >
                     <View style={[styles.clearBtn, s.clearBtn]}>

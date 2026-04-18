@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../store';
 import { fetchSearchResults, setQuery, clearSearch } from '../store/slices/searchSlice';
 
 const DEBOUNCE_MS = 500;
-const MIN_QUERY_LENGTH = 2;
+const MIN_QUERY_LENGTH = 1;
 
 /**
  * Encapsulates search logic:

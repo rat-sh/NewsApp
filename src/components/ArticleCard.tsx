@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import { Article } from '../types';
 import { formatDate, truncate } from '../utils/helpers';
+import { useAppDispatch, useAppSelector } from '../store';
+import { toggleBookmarkLocal } from '../store/slices/bookmarksSlice';
 
 interface Props {
     article: Article;
@@ -20,6 +22,9 @@ const PLACEHOLDER = 'https://via.placeholder.com/400x200?text=No+Image';
 const ArticleCard = memo(({ article, onPress }: Props) => {
     const isDark = useColorScheme() === 'dark';
     const s = isDark ? darkStyles : lightStyles;
+    const dispatch = useAppDispatch();
+    const bookmarks = useAppSelector(state => state.bookmarks.articles);
+    const isBookmarked = bookmarks.some(a => a.url === article.url);
 
     return (
         <TouchableOpacity
@@ -31,7 +36,6 @@ const ArticleCard = memo(({ article, onPress }: Props) => {
                 source={{ uri: article.urlToImage ?? PLACEHOLDER }}
                 style={styles.image}
                 resizeMode="cover"
-                // Gracefully fall back to placeholder on error
                 defaultSource={{ uri: PLACEHOLDER }}
             />
             <View style={styles.body}>
@@ -39,7 +43,18 @@ const ArticleCard = memo(({ article, onPress }: Props) => {
                     <Text style={[styles.source, s.source]} numberOfLines={1}>
                         {article.source.name}
                     </Text>
-                    <Text style={[styles.date, s.date]}>{formatDate(article.publishedAt)}</Text>
+                    <View style={styles.metaRight}>
+                        <Text style={[styles.date, s.date]}>{formatDate(article.publishedAt)}</Text>
+                        <TouchableOpacity
+                            onPress={() => dispatch(toggleBookmarkLocal(article))}
+                            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                            style={styles.bookmarkBtn}
+                        >
+                            <Text style={[styles.bookmarkIcon, isBookmarked && styles.bookmarkActive]}>
+                                {isBookmarked ? '★' : '☆'}
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
                 <Text style={[styles.title, s.title]} numberOfLines={3}>
                     {article.title}
@@ -56,7 +71,6 @@ const ArticleCard = memo(({ article, onPress }: Props) => {
 
 ArticleCard.displayName = 'ArticleCard';
 
-// ── Shared styles ────────────────────────────────────────────────────────────
 const styles = StyleSheet.create({
     card: {
         borderRadius: 12,
@@ -83,6 +97,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 6,
     },
+    metaRight: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+    },
     source: {
         fontSize: 12,
         fontWeight: '600',
@@ -93,6 +112,16 @@ const styles = StyleSheet.create({
     },
     date: {
         fontSize: 11,
+    },
+    bookmarkBtn: {
+        padding: 2,
+    },
+    bookmarkIcon: {
+        fontSize: 18,
+        color: '#bbb',
+    },
+    bookmarkActive: {
+        color: '#1a73e8',
     },
     title: {
         fontSize: 16,
@@ -106,7 +135,6 @@ const styles = StyleSheet.create({
     },
 });
 
-// ── Theme styles ─────────────────────────────────────────────────────────────
 const lightStyles = StyleSheet.create({
     card: { backgroundColor: '#ffffff' },
     source: { color: '#1a73e8' },

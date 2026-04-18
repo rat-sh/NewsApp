@@ -92,6 +92,8 @@ const ArticleList = ({
             }
             onEndReached={onEndReached}
             onEndReachedThreshold={0.4}
+            keyboardShouldPersistTaps="handled"
+            keyboardDismissMode="on-drag"
             refreshControl={
                 onRefresh ? (
                     <RefreshControl

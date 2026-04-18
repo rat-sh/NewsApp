@@ -1,14 +1,13 @@
 import React, { useCallback } from 'react';
 import { View, StyleSheet, useColorScheme, SafeAreaView } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 import { AppStackParamList, Article } from '../types';
 import { useHeadlines } from '../hooks/useHeadlines';
 import ArticleList from '../components/ArticleList';
 import CategoryTabs from '../components/CategoryTabs';
 
-type Props = NativeStackScreenProps<AppStackParamList, 'Tabs'>;
-
-const HomeScreen = ({ navigation }: Props) => {
+const HomeScreen = () => {
+    const navigation = useNavigation<any>();
     const isDark = useColorScheme() === 'dark';
     const {
         articles,

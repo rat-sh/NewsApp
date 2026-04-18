@@ -1,22 +1,26 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import {
     View,
     Text,
+    TextInput,
     StyleSheet,
     useColorScheme,
     SafeAreaView,
+    KeyboardAvoidingView,
+    Platform,
+    TouchableWithoutFeedback,
+    Keyboard,
 } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { AppStackParamList, Article } from '../types';
+import { useNavigation } from '@react-navigation/native';
+import { Article } from '../types';
 import { useSearch } from '../hooks/useSearch';
 import SearchBar from '../components/SearchBar';
 import ArticleList from '../components/ArticleList';
 
-type Props = NativeStackScreenProps<AppStackParamList, 'Tabs'>;
-
-const SearchScreen = ({ navigation }: Props) => {
+const SearchScreen = () => {
     const isDark = useColorScheme() === 'dark';
     const s = isDark ? dark : light;
+    const navigation = useNavigation<any>();
     const { query, articles, status, error, hasMore, onQueryChange, loadMore, clear } =
         useSearch();
 
@@ -31,35 +35,43 @@ const SearchScreen = ({ navigation }: Props) => {
 
     return (
         <SafeAreaView style={[styles.container, s.container]}>
-            <SearchBar value={query} onChangeText={onQueryChange} onClear={clear} />
+            <KeyboardAvoidingView
+                style={styles.flex}
+                behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+            >
+                <SearchBar value={query} onChangeText={onQueryChange} onClear={clear} />
 
-            {showEmpty ? (
-                <View style={styles.prompt}>
-                    <Text style={styles.promptIcon}>🔍</Text>
-                    <Text style={[styles.promptText, s.subText]}>
-                        Search for any topic, person, or event
-                    </Text>
-                    <Text style={[styles.promptHint, s.hint]}>
-                        Results are shown in your preferred language
-                    </Text>
-                </View>
-            ) : (
-                <ArticleList
-                    articles={articles}
-                    status={status}
-                    error={error}
-                    hasMore={hasMore}
-                    onEndReached={loadMore}
-                    onArticlePress={handleArticlePress}
-                    emptyMessage={`No results for "${query}"`}
-                />
-            )}
+                {showEmpty ? (
+                    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                        <View style={styles.prompt}>
+                            <Text style={styles.promptIcon}>🔍</Text>
+                            <Text style={[styles.promptText, s.subText]}>
+                                Search for any topic, person, or event
+                            </Text>
+                            <Text style={[styles.promptHint, s.hint]}>
+                                Results are shown in your preferred language
+                            </Text>
+                        </View>
+                    </TouchableWithoutFeedback>
+                ) : (
+                    <ArticleList
+                        articles={articles}
+                        status={status}
+                        error={error}
+                        hasMore={hasMore}
+                        onEndReached={loadMore}
+                        onArticlePress={handleArticlePress}
+                        emptyMessage={`No results for "${query}"`}
+                    />
+                )}
+            </KeyboardAvoidingView>
         </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
     container: { flex: 1 },
+    flex: { flex: 1 },
     prompt: {
         flex: 1,
         justifyContent: 'center',

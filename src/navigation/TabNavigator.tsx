@@ -4,6 +4,7 @@ import { Text, useColorScheme } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
 import BookmarksScreen from '../screens/BookmarksScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 import { TabParamList } from '../types';
 
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -26,17 +27,22 @@ const TabNavigator = () => {
             <Tab.Screen
                 name="Home"
                 component={HomeScreen as any}
-                options={{ tabBarLabel: 'Home', tabBarIcon: () => <Text style={{ fontSize: 20 }}>🏠</Text> }}
+                options={{ tabBarLabel: 'Home', tabBarIcon: ({ color }) => <Text style={{ fontSize: 20, color }}>⌂</Text> }}
             />
             <Tab.Screen
                 name="Search"
                 component={SearchScreen as any}
-                options={{ tabBarLabel: 'Search', tabBarIcon: () => <Text style={{ fontSize: 20 }}>🔍</Text> }}
+                options={{ tabBarLabel: 'Search', tabBarIcon: ({ color }) => <Text style={{ fontSize: 20, color }}>⌕</Text> }}
             />
             <Tab.Screen
                 name="Bookmarks"
                 component={BookmarksScreen as any}
-                options={{ tabBarLabel: 'Bookmarks', tabBarIcon: () => <Text style={{ fontSize: 20 }}>🔖</Text> }}
+                options={{ tabBarLabel: 'Saved', tabBarIcon: ({ color }) => <Text style={{ fontSize: 20, color }}>♡</Text> }}
+            />
+            <Tab.Screen
+                name="Settings"
+                component={SettingsScreen as any}
+                options={{ tabBarLabel: 'Settings', tabBarIcon: ({ color }) => <Text style={{ fontSize: 20, color }}>⚙</Text> }}
             />
         </Tab.Navigator>
     );

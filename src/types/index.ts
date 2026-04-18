@@ -91,13 +91,13 @@ export type AuthStackParamList = {
 export type AppStackParamList = {
     Tabs: undefined;
     ArticleDetail: { article: Article };
-    Settings: undefined;
 };
 
 export type TabParamList = {
     Home: undefined;
     Search: undefined;
     Bookmarks: undefined;
+    Settings: undefined;
 };
 
 // ─── Redux State ───────────────────────────────────────────────────────────
