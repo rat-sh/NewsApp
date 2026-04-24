@@ -1,4 +1,6 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { MMKV } from 'react-native-mmkv';
+
+export const storage = new MMKV();
 
 const KEYS = {
     REDUX_PERSIST: 'newsapp_redux',
@@ -12,7 +14,7 @@ export { KEYS };
  */
 export async function getItem<T>(key: string): Promise<T | null> {
     try {
-        const value = await AsyncStorage.getItem(key);
+        const value = storage.getString(key);
         return value ? (JSON.parse(value) as T) : null;
     } catch {
         return null;
@@ -24,7 +26,7 @@ export async function getItem<T>(key: string): Promise<T | null> {
  */
 export async function setItem<T>(key: string, value: T): Promise<void> {
     try {
-        await AsyncStorage.setItem(key, JSON.stringify(value));
+        storage.set(key, JSON.stringify(value));
     } catch {
         // Silently fail — non-critical
     }
@@ -35,7 +37,7 @@ export async function setItem<T>(key: string, value: T): Promise<void> {
  */
 export async function removeItem(key: string): Promise<void> {
     try {
-        await AsyncStorage.removeItem(key);
+        storage.delete(key);
     } catch {
         // Silently fail
     }

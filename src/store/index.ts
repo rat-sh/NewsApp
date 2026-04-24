@@ -9,9 +9,9 @@ import {
     PERSIST,
     PURGE,
     REGISTER,
+    Storage,
 } from 'redux-persist';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { KEYS } from '../utils/storage';
+import { KEYS, storage } from '../utils/storage';
 
 import authReducer from './slices/authSlice';
 import headlinesReducer from './slices/headlinesSlice';
@@ -29,9 +29,24 @@ const rootReducer = combineReducers({
 });
 
 // ── Persist config ────────────────────────────────────────────────────────────
+export const reduxStorage: Storage = {
+    setItem: (key, value) => {
+        storage.set(key, value);
+        return Promise.resolve(true);
+    },
+    getItem: (key) => {
+        const value = storage.getString(key);
+        return Promise.resolve(value);
+    },
+    removeItem: (key) => {
+        storage.delete(key);
+        return Promise.resolve();
+    },
+};
+
 const persistConfig = {
     key: KEYS.REDUX_PERSIST,
-    storage: AsyncStorage,
+    storage: reduxStorage,
     whitelist: ['auth', 'preferences'],
 };
 
